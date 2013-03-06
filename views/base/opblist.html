@@ -1,0 +1,32 @@
+<div id="query">
+    <div id="qlist">
+      <div></div>
+      <div class="head">
+        <ul>
+         <li class="proid">品牌</li>
+         <li class="proname">采购金额</li>
+         <li class="procount">补贴金额</li>
+         <li class="proprice">运营金额</li>
+         <li class="prototal">详单</li>
+        </ul>
+      </div>
+      <div class="lcontent" id="operation" start="{all.start}" end="{all.end}" bcode="{all.bcode}" cid="{all.cid}">
+        <ul>
+        <li class="proid">合计</li>
+        <li class="proname">{all.total}</li>
+        <li class="procount">{all.return}</li>
+        <li class="proprice">{all.opmoney}</li>
+        <li class="prototal">----</li>
+      </ul>
+      <!-- BEGIN data -->
+      <ul>
+        <li class="proid">{name}</li>
+        <li class="proname">{total}</li>
+        <li class="procount">{return}</li>
+        <li class="proprice">{opmoney}</li>
+        <li class="prototal"><a  bid="{bid}" class="plist" href="#">详情</a></li>
+      </ul>
+      <!-- END -->
+   </div>
+  </div>
+</div>

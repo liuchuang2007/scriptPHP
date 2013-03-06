@@ -1,0 +1,32 @@
+<div id="query">
+    <div id="qlist">
+      <div>{all.date}{all.rname}{all.name}门店退货统计</div>
+      <div class="head">
+        <ul>
+         <li class="proid">门店</li>
+         <li class="proname">采购金额</li>
+         <li class="procount">补贴金额</li>
+         <li class="proprice">退货金额</li>
+         <li class="prototal">详单</li>
+        </ul>
+      </div>
+      <div class="lcontent" id="cancelM" dtime="{all.dtime}" >
+        <ul>
+        <li class="proid">合计</li>
+        <li class="proname">{all.total}</li>
+        <li class="procount">{all.return}</li>
+        <li class="proprice">{all.cancel}</li>
+        <li class="prototal">----</li>
+      </ul>
+      <!-- BEGIN data -->
+      <ul>
+        <li class="proid">{name}</li>
+        <li class="proname">{total}</li>
+        <li class="procount">{return}</li>
+        <li class="proprice">{cancel}</li>
+        <li class="prototal"><a  store="{dcode}" class="plist" href="#">详情</a></li>
+      </ul>
+      <!-- END -->
+   </div>
+  </div>
+</div>

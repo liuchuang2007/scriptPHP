@@ -1,0 +1,46 @@
+<div id="query">
+  <div id="qlist">
+    <div class="head">
+      <ul>
+        <li>企业名称</li>
+        <li>企业性质</li>
+        <li>所属行业</li>
+        <li class="narrow">最近登录</li>
+        <li class="narrow">申请代码次数</li>
+        <li class="narrow">使用代码次数</li>
+        <li class="narrow">累计采购金额</li>
+        <li class="narrow">累计补贴</li>
+        <li>操作</li>
+      </ul>
+    </div>
+    <div class="lcontent" id="userList">
+      <ul>
+      <!-- BEGIN data -->
+        <li>{companyname}</li>
+        <li>{type}</li>
+        <li>{indus}</li>
+        <li class="narrow">{last_login}</li>
+        <li class="narrow">{apply_count}</li>
+        <li class="narrow">{use_count}</li>
+        <li class="narrow">{total}</li>
+        <li class="narrow">{return}</li>
+        <li usercode="{usercode}"><span class="details">详情</span>&nbsp;
+            <!-- IF locked -->
+            <span class="cunlock">解锁</span>
+            <span class="clock" style="display:none">锁定</span>
+            <!-- ELSE -->
+            <span class="clock">锁定</span>
+            <span class="cunlock" style="display:none">解锁</span>
+            <!-- ENDIF -->
+        </li>
+      <!-- END -->
+      </ul>
+    </div>
+    <div id="sepLinks">{all.links}</div>
+  </div>
+</div>
+<script type="text/javascript">
+var para = {all.param};
+bindSeparatorEvent(para,'list','center/index.html');
+</script>
+

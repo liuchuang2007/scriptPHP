@@ -1,0 +1,49 @@
+<div id="main">
+<div id="cancel">
+运营统计查询:
+<input type="radio" name="condition" value="lweek"  />上周&nbsp;
+<input type="radio" name="condition" value="lmonth" />上月&nbsp;
+<input type="radio" name="condition" value="emonth"  />历月&nbsp;
+城市:<select  name="condition" id="city">
+  <option value="0">选择城市</option>
+  <!-- BEGIN cities -->
+  <option value="{citycode}">{cityname}</option>
+  <!-- END -->
+</select>
+<input type="button" value="载入数据" id="opSearch" />
+</div>
+<div id="list">
+  <div id="query">
+    <div id="qlist">
+      <div></div>
+      <div class="head">
+        <ul>
+         <li class="proid">卖场</li>
+         <li class="proname">采购金额</li>
+         <li class="procount">补贴金额</li>
+         <li class="proprice">运营费用</li>
+         <li class="prototal">明细</li>
+        </ul>
+      </div>
+      <div class="lcontent" id="return">
+        <!--  <ul>
+         <li class="proid">合计</li>
+         <li class="proname">{all.total}</li>
+         <li class="procount">{all.return}</li>
+         <li class="proprice">{all.cancel}</li>
+         <li class="prototal"><a href="#" class="lastw">供应商明细</a></li>
+       </ul>
+       <!-- BEGIN data -->
+       <!-- <ul>
+         <li class="proid">{date}</li>
+         <li class="proname">{total}</li>
+         <li class="procount">{return}</li>
+         <li class="proprice">{cancel}</li>
+         <li class="prototal"><a time="{dtime}" class="sdlist" href="#">详情</a></li>
+       </ul>-->
+       <!-- END -->
+   </div>
+  </div>
+</div>
+</div>
+</div>

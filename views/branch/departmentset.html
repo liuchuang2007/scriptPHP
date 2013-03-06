@@ -1,0 +1,33 @@
+部门名称:<input type="text" id="addname"/>
+<div>
+  <div>统计品类:</div>
+  <div>
+    <div id="allbrand">
+       <!-- BEGIN brands -->
+        <li><input type="checkbox" class="items" value="{id}"/>{name}</li>
+      <!-- END -->
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+<input type="button" id="adddepart" value="添加部门"/>
+<div class="clear"></div>
+<div id="qlist">
+  <div class="head">
+    <ul>
+     <li>部门</li>
+     <li>部门账号</li>
+     <li class="op">操作</li>
+    </ul>
+  </div>
+  <div class="lcontent" id="department">
+   <!-- BEGIN accounts -->
+   <ul>
+     <li>{mname}</li>
+     <li class="code">{logincode}</li>
+     <li class="op" code="{mcode}"><a href="#" class="lock" status="{status}">锁定</a>&nbsp;<a href="#" class="newcode">新部门账号</a>&nbsp;<a href="#">部门管理</a></li>
+   </ul>
+   <!-- END -->
+ </div>
+</div>
+<script>var brands={brands};</script>

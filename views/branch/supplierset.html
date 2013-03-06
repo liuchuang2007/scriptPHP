@@ -1,0 +1,34 @@
+供应商名称:<input type="text" id="addname"/>
+<div>
+  <div>统计品类:</div>
+  <div>
+    <div id="category">
+       <!-- BEGIN cates -->
+        <li><input type="checkbox" class="cateitems" value="{id}"/>{name}</li>
+      <!-- END -->
+    </div>
+    <div id="brand"></div>
+  </div>
+</div>
+<div class="clear"></div>
+<input type="button" id="addsupplier" value="添加供应商"/>
+<div class="clear"></div>
+供应商名称:<input type="text" id="name"/><input type="button" value="查询" />
+<div class="clear"></div>
+<div id="qlist">
+  <div class="head">
+    <ul>
+     <li>供应商</li>
+     <li>操作</li>
+    </ul>
+  </div>
+  <div class="lcontent">
+   <!-- BEGIN supplier -->
+   <ul>
+     <li>{name}</li>
+     <li><a href="#">编辑</a></li>
+   </ul>
+   <!-- END -->
+ </div>
+</div>
+<script>var brands={brands};</script>

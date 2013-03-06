@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{title}</title>
+<link rel="stylesheet" type="text/css" href="/css/main.css"/>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/site.js"></script>
+<script src="/js/separator.js"></script>
+{css}
+{js}
+</head>
+<body>
+<div id="ssss"></div>
+  <div class="header">
+  <img src="/images/logo.png"/><span id="logout">退出</span>
+  <div id="departname"><h2>{depart.name}</h2></div>
+  <hr class="line">
+  </div>
+  <div class="main">
+  <div id="menu">
+  <!-- IF menu -->
+  <!-- BEGIN menu -->
+  <!-- IF flag -->
+    <span class="active"><a href="{link}">{name}</a></span>
+  <!-- ELSE -->
+    <span><a href="{link}">{name}</a></span>
+  <!-- ENDIF -->
+  <!-- END -->
+  <hr class="line">
+  <!-- ENDIF -->
+  </div>
+  {content}
+  </div>
+  <div class="footer">
+    <hr class="line">
+    <span class="notice">Copyright @2011 Ji2ji.com Inc. All Rights Reserved. 城市消费 版权所有</span>
+  </div>
+</body>
+</html>

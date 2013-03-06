@@ -1,0 +1,40 @@
+<div id="storeset">
+门店名称：<input type="text" id="name">
+选择城市:<select id="city">
+  <!-- BEGIN cites -->
+  <option value="{citycode}">{cityname}</option>
+  <!-- END -->
+</select>
+<input type="button" id="newStore" value="添加门店">
+<div class="clear"></div>
+门店查询:<input type="text" id="sname"><input type="button" id="search" value="查询">
+<div class="clear"></div>
+<div id="list">
+  <div id="query">
+    <div id="qlist">
+      <div class="head">
+        <ul>
+          <li>城市</li>
+          <li>门店</li>
+          <li>服务台账号</li>
+          <li>财务账号</li>
+          <li>店长账号</li>
+          <li class="op">操作</li>
+        </ul>
+      </div>
+      <div class="lcontent">
+        <!-- BEGIN data -->
+        <ul>
+          <li>{cityname}</li>
+          <li>{name}</li>
+          <li class="codes">{slogincode}</li>
+          <li class="codef">{flogincode}</li>
+          <li class="codeb">{blogincode}</li>
+          <li class="op"><a class="news" href="#" mcode="{codes}">新服务台</a>&nbsp;<a href="#" class="newf" mcode="{codef}">新财务</a>&nbsp;<a href="#" class="newb" mcode="{codeb}">新店主</a></li>
+        </ul>
+        <!-- END -->
+      </div>
+    </div>
+  </div>
+</div>
+</div>

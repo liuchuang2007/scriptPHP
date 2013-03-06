@@ -1,0 +1,45 @@
+<div id="query">
+  <div id="qlist">
+    <div class="head">
+      <ul>
+          <li>采购代码</li>
+          <li>申请日期</li>
+          <li>使用日期</li>
+          <li>采购门店</li>
+          <li>采购金额</li>
+          <li>补贴金额</li>
+          <li>采购详单</li>
+      </ul>
+    </div>
+    <div class="lcontent">
+      <ul>
+        <li>合计：{all.count}次</li>
+        <li>----</li>
+        <li>----</li>
+        <li>----</li>
+        <li>{all.total}</li>
+        <li>{all.return}</li>
+        <li>----</li>
+      </ul>
+      <!-- BEGIN data -->
+      <ul>
+        <li>{buycode}</li>
+        <li>{ctime}</li>
+        <li>{usetime}</li>
+        <li>{storename}</li>
+        <li>{total}</li>
+        <li>{return}</li>
+        <li><a code="{buycode}" class="plist" href="#">详情</a></li>
+      </ul>
+      <!-- END -->
+      <div id="sepLinks">{sep}</div>
+    </div>
+  </div>
+</div>
+<script>
+var data = {};
+data.page = '{page}';
+data.do = '{do}';
+bindSeparatorEvent('/busi/search.html','#list',data,'#sepLinks a','/busi/index.html');
+//bindSeparatorEvent(url,fillTo,sendData,bindOn,jump)
+</script>

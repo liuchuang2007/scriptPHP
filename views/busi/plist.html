@@ -1,0 +1,35 @@
+<div id="query">
+  <div id="qlist">
+    <div>采购代码: {all.buycode}&nbsp;{all.cname}采购详单<br />采购门店: {all.storename}&nbsp;采购日期:{all.date}&nbsp;</div>
+    <div class="head">
+      <ul>
+       <li>品名</li>
+       <li class="num">数量</li>
+       <li class="num">发票价</li>
+       <li class="num">金额</li>
+       <li class="num">补贴金额</li>
+       <li>发票号</li>
+      </ul>
+    </div>
+    <div class="lcontent">
+      <ul>
+       <li>合计</li>
+       <li class="num">{all.count}</li>
+       <li class="num">----</li>
+       <li class="num">{all.total}</li>
+       <li class="num">{all.return}</li>
+       <li>----</li>
+     </ul>
+     <!-- BEGIN data -->
+     <ul>
+       <li>{pname}</li>
+       <li class="num">{count}</li>
+       <li class="num">{billmoney}</li>
+       <li class="num">{total}</li>
+       <li class="num">{return}</li>
+       <li>{billcode}</li>
+     </ul>
+     <!-- END -->
+   </div>
+  </div>
+</div>
