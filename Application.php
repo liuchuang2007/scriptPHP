@@ -8,30 +8,31 @@ class Application {
         }
         $this->tpl = new SmartTemplate();
         $this->tpl->template_dir = $this->template_dir;
+        $this->tpl->temp_dir = $this->temp_dir;
         $this->urlManager = new UrlManager();
     }
 
     public function run() {
         //If rewrite is open.
-		$module = empty($_REQUEST['module']) ? '' : trim($_REQUEST['module']);
+        $module = empty($_REQUEST['module']) ? '' : trim($_REQUEST['module']);
         $action = empty($_REQUEST['action']) ? '' : trim($_REQUEST['action']);
         if ($this->urlrewrite) {
             if (!$this->urlManager->getReQuest() && $_SERVER[REQUEST_URI] != '/') {
-				$site = new SiteController();
+                $site = new SiteController();
                 $site->actionError();
             }
         }
 
-		//default action.
+        //default action.
         if (empty($module) && empty($action)) {
             $module = 'site';
-			$action = 'index';
+            $action = 'index';
             $_REQUEST['action'] = $action;
         }
-		else if (empty($module)) {
-		    $module = 'site';
-		}
-                		
+        else if (empty($module)) {
+            $module = 'site';
+        }
+                        
         $class_name = ucfirst($module) . 'Controller';
         if (class_exists($class_name)) {
             $class = new $class_name();
@@ -45,7 +46,6 @@ class Application {
             }
         }
         else { //if class not find, redirect to error 
-				echo '----'.$class_name;die();
             $site = new SiteController();
             $site->actionError();
         }

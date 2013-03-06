@@ -11,30 +11,19 @@
 {js}
 </head>
 <body>
-<div id="ssss"></div>
   <div class="header">
-  <img src="/images/logo.png"/><span id="logout">退出</span>
-  <div id="departname"><h2>{depart.name}</h2></div>
-  <hr class="line">
+	<img alt="scriptPHP" src="/images/logo.png"/>
   </div>
-  <div class="main">
-  <div id="menu">
-  <!-- IF menu -->
-  <!-- BEGIN menu -->
-  <!-- IF flag -->
-    <span class="active"><a href="{link}">{name}</a></span>
-  <!-- ELSE -->
-    <span><a href="{link}">{name}</a></span>
-  <!-- ENDIF -->
-  <!-- END -->
-  <hr class="line">
-  <!-- ENDIF -->
+  <div class="mainmenu">
+	<!-- IF sysmenu -->
+	  <!-- BEGIN sysmenu -->
+			<span><a href="{link}">{name}</a></span>
+      <!-- END -->
+    <!-- ENDIF -->
   </div>
-  {content}
-  </div>
+  <div class="main">{content}</div>
   <div class="footer">
-    <hr class="line">
-    <span class="notice">Copyright @2011 Ji2ji.com Inc. All Rights Reserved. 城市消费 版权所有</span>
+    <span class="notice">Copyright 2013@scriptPHP </span>
   </div>
 </body>
 </html>

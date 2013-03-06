@@ -7,14 +7,25 @@ class CController {
                 Application::$app->tpl->assign($key,$value);
             }
         }
+        
+        //website name
         Application::$app->tpl->assign('title', Application::$app->title .'-'.$this->title);
-
+        
+        //render css
         if ($this->css) {
              Application::$app->tpl->assign('css',$this->css);
         }
+        
+        //render js
         if ($this->js) {
              Application::$app->tpl->assign('js',$this->js);
         }
+
+        //render sysmenu
+        if (Application::$app->sysmenu) {
+             Application::$app->tpl->assign('sysmenu', Application::$app->sysmenu);
+        }
+
         //include file.
         $folder = $this->getViewsFolder();
         $file = "$folder/$file" . '.html';
@@ -41,32 +52,6 @@ class CController {
     protected function file_import($file) {
         $folder = $this->getViewsFolder();
         include Application::$app->basePath."/views/$folder/$file.html";
-    }
-
-    protected function getMenu($type,$mtype=0) {
-        $subItems = array();
-        $menulist = array();
-
-        foreach (Application::$app->sysmenu as $item) {
-            if ($type == $item['type'] && !$mtype) {
-                 $menulist = $item['items'];
-                 break;
-            }
-            else if ($type == $item['type'] && $mtype) {
-                foreach ($item['items'] as $item) {
-                    if ($mtype == $item['mtype']) {
-                        $menulist = $item['items'];
-                        break;
-                    }
-                }
-            }
-        }
-
-        foreach ($menulist as $key=>$item) {
-            if ($item['action'] == $_REQUEST['action'])$menulist[$key]['flag'] = 1;
-        }
-
-        return $menulist;
     }
 
     protected function registerCssFile($file) {

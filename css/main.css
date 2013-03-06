@@ -1,61 +1,6 @@
 @CHARSET "UTF-8";
 body {font-size:10pt;}
 .header {margin:0 auto;width:1000px;}
-.header .line {width:100%;color:red;}
-.main {margin:0 auto;width:1000px;height:100%;min-height:600px;}
-#menu {width:100%;}
-#menu span {width:100px;display:inline-block;height:25px; line-height:25px;text-align:center;cursor:pointer}
-#menu .active {background:red;}
-#menu .line {margin:0;padding:0;color:red;}
-.footer {margin:0 auto;width:1000px;}
-.footer .line {width:100%;}
-.footer .notice{margin:0 auto;display:block;width:100%;text-align:center;}
-#logout {float:right;}
-.clear {clear:both;}
-li {list-style: none;}
-#departname {float:right;margin-top:20px;}
-
-    #sepLinks {
-        display: block;
-        width: 500px;
-        margin: 0 auto;
-        margin-top: 20px;
-    }
-    #sepLinks a {
-        display: inline-block;
-        width: 20px;
-        margin: 0 5px 0 5px;
-        float: right;
-        height: 20px;
-        line-height: 20px;
-        text-align: center;
-        border: 1px solid #AAAAAA;
-    }
-    #sepLinks a:hover {
-        text-decoration: none;
-    }
-    #sepLinks .edage {
-        width: 50px;
-    }
-    #sepLinks span {
-        float: right;
-        display: inline-block;
-    }
-    #sepLinks .active {
-        display: inline-block;
-        width: 20px;
-        margin: 0 5px 0 5px;
-        float: right;
-        height: 20px;
-        line-height: 20px;
-        text-align: center;
-        border: 0px solid #AAAAAA;
-    }
-    
-#calendar1 {font-size:16pt;}
-#calendar1 .date {width: 630px;}
-#calendar1 .date span{width:160px;display:block;float:left;text-align:center;}
-#calendar1 .week ul li{width:80px;display:block;float:left;text-align:center;line-height:40px;margin:2px;}
-#calendar1 .daylist {width: 630px; padding-left:20px;}
-#calendar1 .daylist span{width:80px;height:40px;display:block;float:left;text-align:center;line-height:40px;margin:2px;}
-#calendar1 .daylist .chosen{background:#a0efff;}
+.header img {font-size:24px;font-weight:bold;}
+.main {margin:0 auto;width:1000px;height:auto;}
+.footer {margin:0 auto;width:1000px;height:auto;}
