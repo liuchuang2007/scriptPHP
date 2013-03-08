@@ -14,14 +14,14 @@
   <div class="header">
 	<img alt="scriptPHP" src="/images/logo.png"/>
   </div>
-  <div class="mainmenu">
-	<!-- IF sysmenu -->
-	  <!-- BEGIN sysmenu -->
-			<span><a href="{link}">{name}</a></span>
-      <!-- END -->
-    <!-- ENDIF -->
+
+  <div class="main">
+    <div class="mainmenu">
+		<span><a href="<?php echo Application::$app->urlManager->createUrl(array('module'=>'site','action'=>'index'));?>">首页</a></span>
+		<span><a href="<?php echo Application::$app->urlManager->createUrl(array('module'=>'site','action'=>'intro'));?>">简介</a></span>
+    </div>
+	<div class="content">{content}</div>
   </div>
-  <div class="main">{content}</div>
   <div class="footer">
     <span class="notice">Copyright 2013@scriptPHP </span>
   </div>

@@ -13,46 +13,60 @@ class Application {
     }
 
     public function run() {
+        if ($this->urlrewrite) {
+            //if rewrite rule is not exist and path is not web default path, redirect to error page.
+            if (!$this->urlManager->getReQuest()) {
+                if ($_SERVER[REQUEST_URI] != '/') {
+                    $site = new SiteController();
+                    $site->actionError();
+                    exit;
+                }
+                else {
+                    $_REQUEST['module'] = 'site';
+                    $_REQUEST['action'] = 'index';
+                }
+            }
+        }
+		else if ($_SERVER[REQUEST_URI] == '/') {
+			$_REQUEST['module'] = 'site';
+            $_REQUEST['action'] = 'index';
+		}
+
         //If rewrite is open.
         $module = empty($_REQUEST['module']) ? '' : trim($_REQUEST['module']);
         $action = empty($_REQUEST['action']) ? '' : trim($_REQUEST['action']);
-        if ($this->urlrewrite) {
-            if (!$this->urlManager->getReQuest() && $_SERVER[REQUEST_URI] != '/') {
-                $site = new SiteController();
-                $site->actionError();
-            }
+
+        //if module or action is not exist, then redirect to error page.
+        if (empty($module) || empty($action)) {
+            $site = new SiteController();
+            $site->actionError();
+            exit;
         }
 
-        //default action.
-        if (empty($module) && empty($action)) {
-            $module = 'site';
-            $action = 'index';
-            $_REQUEST['action'] = $action;
-        }
-        else if (empty($module)) {
-            $module = 'site';
-        }
-                        
+        //pick related controllers.
         $class_name = ucfirst($module) . 'Controller';
         if (class_exists($class_name)) {
             $class = new $class_name();
+            
+            //pick related method.
             $method = 'action' . ucfirst($action);
             if (method_exists($class, $method)) {
                 $class->$method();
             }
-            else {//if method not find, redirect to error
+            else {
+                //if method not find, redirect to error
                 $site = new SiteController();
                 $site->actionError();
             }
         }
-        else { //if class not find, redirect to error 
+        else {
+            //if class not find, redirect to error 
             $site = new SiteController();
             $site->actionError();
         }
     }
 
     public static function autoload($class) {
-        //require_once dirname(__FILE__) . '/lib/class.agent_db.php';
         $base = dirname(__FILE__);
         $include_file = $base.'/include/'.$class.'.php';
         $controller_file = $base.'/controllers/'.$class.'.php';

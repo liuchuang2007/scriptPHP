@@ -5,8 +5,8 @@ return array (
     'template_dir' => 'views',
 	'temp_dir' => 'temp/',
     'urlrewrite' => false,
+	'rewrite_suffix' => '.html',
     'title' => 'scriptPHP Framework',
     'uploadImgPath' => dirname(__FILE__).'/../upload/images/',
-    'urlrules'=> include dirname(__FILE__).'/urlrules.php',
-    'sysmenu'=> require dirname(__FILE__) . '/menuconfig.php',
+    'urlrules' => include dirname(__FILE__).'/urlrules.php',
 );

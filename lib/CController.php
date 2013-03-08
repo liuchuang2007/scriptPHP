@@ -21,11 +21,6 @@ class CController {
              Application::$app->tpl->assign('js',$this->js);
         }
 
-        //render sysmenu
-        if (Application::$app->sysmenu) {
-             Application::$app->tpl->assign('sysmenu', Application::$app->sysmenu);
-        }
-
         //include file.
         $folder = $this->getViewsFolder();
         $file = "$folder/$file" . '.html';

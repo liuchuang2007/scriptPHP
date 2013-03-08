@@ -1,8 +1,11 @@
 <?php
 class UrlManager {
+	
+	/**
+	 *@description: process the url rewirte rules.
+	**/
     public function getReQuest() {
         $url = $_SERVER['REQUEST_URI'];
-		echo $url;
         $rules = Application::$app->urlrules;
         foreach($rules as $key => $rule) {
             if ($this->checkUrl($rules,$key)) {
@@ -19,20 +22,10 @@ class UrlManager {
         return false;
     }
 
+	/**
+	 *@description: analyze the url rewrite rules.
+	**/
     private function checkUrl($url,$pattern) {
-		//action check.
-		/*$access_actions = array();
-		$actionExist = false;
-		if (preg_match('/\/.*\/(\(.*\))/',$pattern,$matchaction)) {
-			
-			if (preg_match_all('/[|(](\w+)/',$pattern,$result)) {
-				foreach ($result[1] as $item) {
-					array_push($access_actions,$item);
-				}
-			}
-			$actionExist = true;
-		}*/
-
 		//parameter check.
         $pattern = '/^'.str_replace('/', '\/', $pattern).'/';
         $newPatten = "/<(.*?)>/";
@@ -56,29 +49,31 @@ class UrlManager {
     }
 
     /*
-     * createUrl('http://www.zizhu.cn',array('module'=>'base','action'=>'index','id'=>123,'name'=>'george'))
+     * createUrl(array('module'=>'base','action'=>'index','id'=>123,'name'=>'george'))
      */
-    public function createUrl($mainurl,$params) {
+    public function createUrl($params) {
         if (empty($params['module']) || empty($params['action'])) return false;
-        $mainurl = trim($mainurl,'/');
+		
+		//if url rewrite is open
         if (Application::$app->urlrewrite) {
-            $url = $mainurl . '/' . $params['module'] . '/' . $params['action'] . '-';
+            $url =  '/' . $params['module'] . '/' . $params['action'] . '/';
             unset($params['module']);
             unset($params['action']);
+			
+			//just combine the params for easy.
             foreach($params as $key => $value) {
-                $url = $url . "$value-";
+                $url = $url . "$value/";
             }
-            return trim($url,'-') . '.html';
+
+            return trim($url,'/') . Application::$app->rewrite_suffix;
         }
         else {
-            $url = $mainurl.'?'.'module='.$params['module'].'&action='.$params['action'].'&';
-            unset($params['module']);
-            unset($params['action']);
-            if ($params && is_array($params)) {
-                foreach ($params as $key=>$value) {
-                    $url = $url . "$key=$value&";
-                }
-            }
+			//if url rewrite is closed
+            $url = '/index.php?';
+			foreach ($params as $key=>$value) {
+				$url = $url . "$key=$value&";
+			}
+
             return trim($url,'&');
         }
     }

@@ -9,35 +9,19 @@ class SiteController extends CController {
         $this->render('index');
     }
 
+	public function actionIntro() {
+		echo 'ok';
+	}
     /**
-     * @Describe :  路径出错处理
+     * @Describe :  route error process
     */
     public function actionError() {
         $action = $_REQUEST['action'];
         $module = $_REQUEST['module'];
         if ($_SERVER['REQUEST_METHOD']== 'POST') {
-            die('-10');//路径错误
+            die('-10');//path error
         }
         else $this->renderPartial('error',array('url'=>$_SERVER[REQUEST_URI]));
         exit();
-    }
-
-    /**
-     * @Describe : 跳转到returnback页面
-     */
-    public function actionGoback() {
-        if (!empty($_SESSION['returnUrl'])) {
-            header("location: {$_SESSION['returnUrl']}");
-        }
-    }
-
-    /**
-     * @Describe : 记录returnback页面
-     */
-    public function actionSaveUrl() {
-        $url = empty($_REQUEST['url']) ? '' : trim($_REQUEST['url']);
-        if (!empty($url)) {
-            $_SESSION['returnUrl'] = $url;
-        }
     }
 }

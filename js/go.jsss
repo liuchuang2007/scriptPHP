@@ -1,0 +1,4 @@
+(function(){
+	var count = 0;
+	var timer = setInterval(function(){count++; if (count>2){window.location.href="/";clearInterval(timer);}},1000);
+})(window);
