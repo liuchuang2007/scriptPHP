@@ -27,7 +27,7 @@ class Application {
                 }
             }
         }
-		else if ($_SERVER[REQUEST_URI] == '/') {
+		else if ($_SERVER['REQUEST_URI'] == '/') {
 			$_REQUEST['module'] = 'site';
             $_REQUEST['action'] = 'index';
 		}
@@ -67,16 +67,21 @@ class Application {
     }
 
     public static function autoload($class) {
-        $base = dirname(__FILE__);
-        $include_file = $base.'/include/'.$class.'.php';
-        $controller_file = $base.'/controllers/'.$class.'.php';
-        $lib_file = $base.'/lib/'.$class.'.php';
-        $model_file = $base.'/models/'.$class.'.php';
-        if (file_exists($include_file)) require_once $include_file;
-        else if (file_exists($controller_file)) require_once $controller_file;
-        else if (file_exists($lib_file)) require_once $lib_file;
-        else if (file_exists($model_file)) {
-            require_once $model_file;
+		//common classes. the class name is the same with class file name
+		$core_dirs = glob(dirname(__FILE__).'/lib/*',GLOB_ONLYDIR);
+		array($core_dirs, BASE_PATH.'/models');
+		foreach($core_dirs as $dir) {
+			$file = $dir . '/' . $class . '.php';
+			if (file_exists($file)) {
+				require_once $file;
+				return;
+			}
+		}
+		
+        //include controller file
+		$cfile = BASE_PATH.'controllers/'.$class.'.php';
+        if (file_exists($cfile)) {
+			require_once $cfile;
         }
     }
 
