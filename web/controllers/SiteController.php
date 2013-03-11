@@ -6,9 +6,22 @@
  */
 class SiteController extends CController {
     public function actionIndex() {
-		$mem = new MemRes();
-		$mem_con = $mem->newMem();
-		$mem_con->set('ddddd','dddddddddddd');
+		//use memcache
+		//$mem = new MemRes();
+		//$mem_con = $mem->newMem();
+		//$mem_con->set('ddddd','----------dddddddddddd');
+		//echo $mem_con->get('ddddd');
+		
+		//use mysql
+		//$mysql = new MysqlRes();
+		//$users = $mysql->queryBySql('SELECT * FROM ecs_users','all');
+		//var_dump($users);
+		
+		//use mongo
+		//$connection = new MongoRes();
+		//$res = $connection->mongoUpdate('test',array('sex'=>'male','age'=>14,'grade'=>'12','school'=>'hanbin'),array('sex'=>'female'));
+		//$res = $connection->mongoQuery('test',array('sex'=>'male'));
+		//var_dump($res);
         $this->render('index');
     }
 

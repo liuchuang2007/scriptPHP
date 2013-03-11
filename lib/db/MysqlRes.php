@@ -25,7 +25,7 @@ class MysqlRes  extends ResourceRoute {
 			$arrcon['port'] = 3306;
 		}
 
-		$this->linkID = mysqli_connect($arrcon['host'], $arrcon['user'], $arrcon['password'], $arrcon['database'], $arrcon['port']) or $this->db_error('DB Connect Error!');
+		$this->linkID = mysqli_connect($arrcon['host'], $arrcon['user'], $arrcon['password'], $arrcon['db'], $arrcon['port']) or $this->db_error('DB Connect Error!');
 		mysqli_query($this->linkID, "SET NAMES 'utf8'") or $this->db_error("Set names error!");
 	}
 
@@ -34,8 +34,8 @@ class MysqlRes  extends ResourceRoute {
 			$this->connect();
 		}
 
-		if ($querysql != '') {
-			$result = mysqli_query($this->linkID, $querysql) or $this->db_error("{$querysql}");
+		if ($sql != '') {
+			$result = mysqli_query($this->linkID, $sql) or $this->db_error("{$sql}");
 
 			if ($returnType == '') {
 
@@ -76,7 +76,7 @@ class MysqlRes  extends ResourceRoute {
 			$this->connect();
 		}
 		
-		return mysqli_query($this->linkID, $querysql) or $this->db_error("{$querysql}");
+		return mysqli_query($this->linkID, $sql) or $this->db_error("{$sql}");
 	}
 
 	public function fetch_row($res){

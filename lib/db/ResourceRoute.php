@@ -12,8 +12,8 @@ class ResourceRoute {
 	protected function get_conn_source($type) {
 		switch($type) {
 			case 'mysql':
-				if (!empty(Application::$app->db)) {
-					$res = Application::$app->db;
+				if (!empty(Application::$app->mysql)) {
+					$res = Application::$app->mysql;
 				}
 			break;
 			

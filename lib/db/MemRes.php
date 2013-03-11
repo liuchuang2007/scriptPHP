@@ -7,7 +7,6 @@
 class MemRes  extends ResourceRoute {
 	private static $mem;
 	public function __construct() {
-		echo 'ddd';
 	}
 
 	public function newMem($conntype='memcache') {

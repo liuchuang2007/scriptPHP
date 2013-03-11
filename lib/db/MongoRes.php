@@ -5,8 +5,9 @@
  *@Date:2013-03-03
  */
 class MongoRes  extends ResourceRoute {
-	private $_newmon;
+	public static $_newmon;
 	public function __construct() {
+		$this->newMongo();
 	}
 
 	protected function newMongo($conntype='mongodb') {
@@ -28,11 +29,11 @@ class MongoRes  extends ResourceRoute {
 	 * @Parm : $limit array(start, perpage)
 	 * @Return : data
 	 */
-	public function mongoQuery($db, $collection, $where, $total = null, $fields=null, $sort=null, $limit=null) {
+	public function mongoQuery($collection, $where, $fields=null, $total = null, $sort=null, $limit=null) {
 		try{
 			$count = 0;
 			$data = array();
-			$collection = self::newMongo($db)->selectCollection($collection);
+			$collection = self::newMongo()->selectCollection($collection);
 			if ($collection == null) {
 				return $data;
 			}
@@ -83,10 +84,10 @@ class MongoRes  extends ResourceRoute {
 	 * @Parm : $updata array('key'=>'new data')
 	 * @Return : true
 	 */
-	protected function mongoUpdate($db, $collection, $updata, $where, $affectall=false) {
+	public function mongoUpdate($collection, $updata, $where, $affectall=false) {
 		try{
 
-			$collection = self::newMongo($db)->selectCollection($collection);
+			$collection = self::newMongo()->selectCollection($collection);
 
 			if ($collection == null) {
 				return false;
@@ -109,9 +110,9 @@ class MongoRes  extends ResourceRoute {
 	 * @Parm : $updata array('key'=>'new data')
 	 * @Return : true
 	 */
-	protected function mongoInsert($db, $collection, $data) {
+	public function mongoInsert($collection, $data) {
 		try{
-			$collection = self::newMongo($db)->selectCollection($collection);
+			$collection = self::newMongo()->selectCollection($collection);
 			if ($collection != null) {
 				$ret = $collection->batchInsert($data,array("safe" => true));
 
@@ -130,7 +131,7 @@ class MongoRes  extends ResourceRoute {
 	 * @Parm : $updata array('key'=>'new data')
 	 * @Return : true
 	 */
-	protected function mongoDelete($db, $collection, $where) {
+	public function mongoDelete($collection, $where) {
 
 		$collection = self::newMongo($db)->selectCollection($collection);
 
