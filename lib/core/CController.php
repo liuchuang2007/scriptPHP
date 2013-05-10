@@ -6,10 +6,10 @@
  */
 class CController {
     public $layout = 'default';
-	
-	/**
-	 *@description: render the content with layout.
-	 */
+    
+    /**
+     *@description: render the content with layout.
+     */
     protected function render($file, $data=array()) {
         if (is_array($data)) {
             foreach($data as $key => $value) {
@@ -38,15 +38,15 @@ class CController {
         $content = ob_get_contents();
         ob_clean();
 
-		//render the content in layout
+        //render the content in layout
         Application::$app->tpl->assign('content',$content);
         $layout = "layouts/$this->layout" . '.html';
         Application::$app->tpl->output($layout);
     }
 
     /**
-	 *@description: only render the content.
-	 */
+     *@description: only render the content.
+     */
     protected function renderPartial($file, $data=array()) {
         if (is_array($data)) {
             foreach($data as $key => $value) {
@@ -59,38 +59,38 @@ class CController {
         Application::$app->tpl->output($file);
     }
 
-	/**
-	 *@description: add css file
-	 */
+    /**
+     *@description: add css file
+     */
     protected function registerCssFile($file) {
         $this->css .= '<link rel="stylesheet" type="text/css" href="'.$file.'">';
     }
 
-	/**
-	 *@description: add js file
-	 */
+    /**
+     *@description: add js file
+     */
     protected function registerJsFile($file) {
         $this->js .= '<script src="'.$file.'"></script>';
     }
 
-	/**
-	 *@description: if user request type is POST
-	 */
+    /**
+     *@description: if user request type is POST
+     */
     protected function isPostRequest() {
         return $_SERVER[REQUEST_METHOD] == 'POST';
     }
 
     /**
-	 *@description: get the current module's view fold
-	 */
+     *@description: get the current module's view fold
+     */
     private function getViewsFolder() {
         $className = get_class($this);
         return strtolower(str_replace('Controller', '', $className));
     }
 
-	/**
-	 *@description: get remote client ip
-	 */
+    /**
+     *@description: get remote client ip
+     */
     protected function getClientIp() {
         if (isset($_SERVER)) {
             if (isset($_SERVER[HTTP_X_FORWARDED_FOR])) {

@@ -1,9 +1,14 @@
 <?php
+/**
+ * @description: url rewrite.
+ * @Author:liuchuang
+ * @Date: 2013-03-06
+ */
 class UrlManager {
-	
-	/**
-	 *@description: process the url rewirte rules.
-	**/
+    
+    /**
+     *@description: process the url rewirte rules.
+    **/
     public function getReQuest() {
         $url = $_SERVER['REQUEST_URI'];
         $rules = Application::$app->urlrules;
@@ -22,11 +27,11 @@ class UrlManager {
         return false;
     }
 
-	/**
-	 *@description: analyze the url rewrite rules.
-	**/
+    /**
+     *@description: analyze the url rewrite rules.
+    **/
     private function checkUrl($url,$pattern) {
-		//parameter check.
+        //parameter check.
         $pattern = '/^'.str_replace('/', '\/', $pattern).'/';
         $newPatten = "/<(.*?)>/";
         if (preg_match_all($newPatten,$pattern,$result,PREG_PATTERN_ORDER)) {
@@ -53,14 +58,14 @@ class UrlManager {
      */
     public function createUrl($params) {
         if (empty($params['module']) || empty($params['action'])) return false;
-		
-		//if url rewrite is open
+        
+        //if url rewrite is open
         if (Application::$app->urlrewrite) {
             $url =  '/' . $params['module'] . '/' . $params['action'] . '/';
             unset($params['module']);
             unset($params['action']);
-			
-			//just combine the params for easy.
+            
+            //just combine the params for easy.
             foreach($params as $key => $value) {
                 $url = $url . "$value/";
             }
@@ -68,11 +73,11 @@ class UrlManager {
             return trim($url,'/') . Application::$app->rewrite_suffix;
         }
         else {
-			//if url rewrite is closed
+            //if url rewrite is closed
             $url = '/index.php?';
-			foreach ($params as $key=>$value) {
-				$url = $url . "$key=$value&";
-			}
+            foreach ($params as $key=>$value) {
+                $url = $url . "$key=$value&";
+            }
 
             return trim($url,'&');
         }

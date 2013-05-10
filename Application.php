@@ -1,4 +1,9 @@
 <?php
+/**
+ *@description: application entrance 
+ *@author: liuchuang
+ *@Date:2013-03-03
+ */
 class Application {
     public static $app;
     public function __construct($config) {
@@ -27,10 +32,10 @@ class Application {
                 }
             }
         }
-		else if ($_SERVER['REQUEST_URI'] == '/') {
-			$_REQUEST['module'] = 'site';
+        else if ($_SERVER['REQUEST_URI'] == '/') {
+            $_REQUEST['module'] = 'site';
             $_REQUEST['action'] = 'index';
-		}
+        }
 
         //If rewrite is open.
         $module = empty($_REQUEST['module']) ? '' : trim($_REQUEST['module']);
@@ -67,21 +72,21 @@ class Application {
     }
 
     public static function autoload($class) {
-		//common classes. the class name is the same with class file name
-		$core_dirs = glob(dirname(__FILE__).'/lib/*',GLOB_ONLYDIR);
-		array($core_dirs, BASE_PATH.'/models');
-		foreach($core_dirs as $dir) {
-			$file = $dir . '/' . $class . '.php';
-			if (file_exists($file)) {
-				require_once $file;
-				return;
-			}
-		}
-		
+        //common classes. the class name is the same with class file name
+        $core_dirs = glob(dirname(__FILE__).'/lib/*',GLOB_ONLYDIR);
+        array($core_dirs, BASE_PATH.'/models');
+        foreach($core_dirs as $dir) {
+            $file = $dir . '/' . $class . '.php';
+            if (file_exists($file)) {
+                require_once $file;
+                return;
+            }
+        }
+        
         //include controller file
-		$cfile = BASE_PATH.'controllers/'.$class.'.php';
+        $cfile = BASE_PATH.'controllers/'.$class.'.php';
         if (file_exists($cfile)) {
-			require_once $cfile;
+            require_once $cfile;
         }
     }
 

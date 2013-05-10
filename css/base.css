@@ -1,9 +1,0 @@
-@CHARSET "UTF-8";
-/* query*/
-#qlist {float:left;}
-#qlist .head li{float:left;width:140px;text-align:center;background:#999999;border:1px solid black;}
-#qlist .lcontent li{float:left;width:140px;text-align:center;border:1px solid black;}
-#qlist div ul{padding:0;margin:0;}
-#qlist ul .op{float:left;width:200px;text-align:center;border:1px solid black;}
-#qlist ul .city{float:left;width:300px;text-align:center;border:1px solid black;}
-#qlist .head .num,#qlist .lcontent .num {width:60px;}
