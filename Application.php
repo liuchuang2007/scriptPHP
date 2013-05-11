@@ -36,11 +36,6 @@ class Application {
             $_REQUEST['module'] = 'site';
             $_REQUEST['action'] = 'index';
         }
-        else {
-            $site = new SiteController();
-            $site->actionError();
-            exit;
-        }
 
         //If rewrite is open.
         $module = empty($_REQUEST['module']) ? '' : trim($_REQUEST['module']);
