@@ -32,14 +32,9 @@ class Application {
                 }
             }
         }
-        else if (empty($_REQUEST['module']) && empty($_REQUEST['module'])) {
+        else if ($_SERVER['REQUEST_URI'] == '/') {
             $_REQUEST['module'] = 'site';
             $_REQUEST['action'] = 'index';
-        }
-        else {
-            $site = new SiteController();
-            $site->actionError();
-            exit;
         }
 
         //If rewrite is open.

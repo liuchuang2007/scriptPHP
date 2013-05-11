@@ -81,7 +81,7 @@
 				return;
 			}
 			/* Quick hack to allow subtemplates */
-			if(eregi("<!-- INCLUDE", $this->template))
+			if(preg_match("/<!-- INCLUDE/", $this->template))
 			{
 				while ($this->count_subtemplates() > 0)
 				{
