@@ -21,7 +21,7 @@ class Application {
         if ($this->urlrewrite) {
             //if rewrite rule is not exist and path is not web default path, redirect to error page.
             if (!$this->urlManager->getReQuest()) {
-                if ($_SERVER[REQUEST_URI] != '/') {
+                if ($_SERVER['REQUEST_URI'] != '/') {
                     $site = new SiteController();
                     $site->actionError();
                     exit;

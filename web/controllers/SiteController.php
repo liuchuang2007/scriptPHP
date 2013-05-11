@@ -36,7 +36,7 @@ class SiteController extends CController {
         if ($_SERVER['REQUEST_METHOD']== 'POST') {
             die('-10');//path error
         }
-        else $this->renderPartial('error',array('url'=>$_SERVER[REQUEST_URI]));
+        else $this->renderPartial('error',array('uri'=>$_SERVER['REQUEST_URI']));
         exit();
     }
 }
