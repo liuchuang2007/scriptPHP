@@ -33,8 +33,6 @@ class SiteController extends CController {
      * @Describe :  route error process
     */
     public function actionError() {
-        $action = $_REQUEST['action'];
-        $module = $_REQUEST['module'];
         if ($_SERVER['REQUEST_METHOD']== 'POST') {
             die('-10');//path error
         }
