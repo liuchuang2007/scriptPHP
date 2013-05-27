@@ -6,7 +6,8 @@
  */
 class MysqlRes  extends ResourceRoute {
 	private $linkID;
-	public function __construct() {
+	public function MysqlRes() {
+		$this->connect();
 	}
 
 	public function __destruct() {
@@ -15,11 +16,20 @@ class MysqlRes  extends ResourceRoute {
 		}
 	}
 
+	public function table($name='') {
+		if (empty($name)) {
+			return App::$app->mysql['prefix'].$this->_table;
+		}
+		else {
+			return App::$app->mysql['prefix'] . $name;
+		}
+	}
+
 	private function connect() {
 		$arrcon = $this->get_conn_source('mysql');
 		if (count(explode(':', $arrcon['host'])) > 1) {
-			list($host, $port) = explode(':', $arrcon['host']);
-			!$port && $port = 3306;
+			list($arrcon['host'], $arrcon['port']) = explode(':', $arrcon['host']);
+			!$arrcon['port'] && $arrcon['port'] = 3306;
 		}
 		else {
 			$arrcon['port'] = 3306;
@@ -27,6 +37,37 @@ class MysqlRes  extends ResourceRoute {
 
 		$this->linkID = mysqli_connect($arrcon['host'], $arrcon['user'], $arrcon['password'], $arrcon['db'], $arrcon['port']) or $this->db_error('DB Connect Error!');
 		mysqli_query($this->linkID, "SET NAMES 'utf8'") or $this->db_error("Set names error!");
+	}
+
+	public function save($article = array()) {
+        $sql = 'INSERT INTO '.$this->table().' (';
+        $values = '';
+        $keys = '';
+        foreach ($article as $key => $val) {
+            $keys .= $key . ',';
+            $values .= "'" . $this->escape_string($val) . "',";
+        }
+
+        $sql = $sql . trim($keys, ',') . ') values(' . trim($values, ',') . ')';
+        return $this->queryBySql($sql);
+    }
+
+	public function update($id, $article = array()) {
+		$id = intval($id);
+        $sql = 'UPDATE ' . $this->table() . ' SET ';
+        foreach ($article as $key => $val) {
+            $sql .= "$key='" . $this->escape_string($val) . "',";
+        }
+
+        $sql = trim($sql, ',') . ' WHERE id = ' . $id;
+        return $this->queryBySql($sql);
+    }
+
+	public function deleteItemByIds($ids=array()) {
+		$ids = implode(',', $ids);
+		$sql = "DELETE FROM " . $this->table() . " WHERE id IN ($ids)";
+
+		return $this->queryBySql($sql);
 	}
 
 	public function queryBySql($sql = '', $returnType = ''){

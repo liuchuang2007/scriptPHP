@@ -4,17 +4,22 @@
  *@author: liuchuang
  *@Date:2013-03-03
  */
-class Application {
+class App {
     public static $app;
     public function __construct($config) {
-        Application::$app = $this;
+        App::$app = $this;
         foreach ($config as $key => $value) {
             $this->$key = $value;
         }
-        $this->tpl = new SmartTemplate();
-        $this->tpl->template_dir = $this->template_dir;
-        $this->tpl->temp_dir = $this->temp_dir;
+
         $this->urlManager = new UrlManager();
+		
+		//load shopconfig
+		/*$shop = new Shop();
+		$conf = $shop->getShopConfig();
+		foreach ($conf as $item) {
+			$this->{$item['save_key']} = $item['save_value'];
+		}*/
     }
 
     public function run() {
@@ -88,14 +93,20 @@ class Application {
         if (file_exists($cfile)) {
             require_once $cfile;
         }
+        
+        //include controller file
+        $cfile = BASE_PATH.'models/'.$class.'.php';
+        if (file_exists($cfile)) {
+            require_once $cfile;
+        }
     }
 
     public static function addLog($type= 'SYS', $msg='') {
-        $fp = fopen(Application::$app->import_log,'a+');
+        $fp = fopen(App::$app->import_log,'a+');
         $str = '[' . date('Y-m-d H:i:s') . '][' . $type . ']' . $msg . "<br />\n";
         fputs($fp, $str);
         fclose($fp);
         return $str;
     }
 }
-spl_autoload_register(array('Application','autoload'));
+spl_autoload_register(array('App','autoload'));

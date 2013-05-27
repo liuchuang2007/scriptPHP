@@ -5,7 +5,23 @@
  * @Date: 2013-03-07
  */
 class SiteController extends CController {
-    public function actionIndex() {
+    
+	public function SiteController() {
+		/*
+		//add login filter.
+		$action = $_REQUEST['action'];
+		$filter = $this->accessFilter();
+		if (($filter['login'] == 'all' && $action != 'error') || in_array($action, $filter['login'])) {
+			$user = new User();
+			$user->loginRequired();
+		}*/
+	}
+
+	private function accessFilter() {
+		return array('login' => 'all');
+	}
+	
+	public function actionIndex() {
 		//use memcache
 		//$mem = new MemRes();
 		//$mem_con = $mem->newMem();

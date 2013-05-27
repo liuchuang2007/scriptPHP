@@ -1,8 +1,9 @@
 <?php
 session_start();
 error_reporting(E_ALL);
-include_once 'Application.php';
+ini_set('display_errors', 1);
+include_once 'App.php';
 $config = include_once dirname(__FILE__) . '/web/config/main.php';
-//$core_dirs = glob(dirname(__FILE__).'/*',GLOB_ONLYDIR);var_dump($core_dirs);die;
-$app = new Application($config);
+
+$app = new App($config);
 $app->run();

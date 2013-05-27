@@ -1,9 +1,6 @@
 ﻿<?php
 define('BASE_PATH',dirname(__FILE__).'/../');
-include BASE_PATH.'../lib/templates/class.smarttemplate.cls';
 return array (
-    'template_dir' => 'web/views',
-	'temp_dir' => 'temp/',
     'urlrewrite' => false,
 	'rewrite_suffix' => '.html',
     'name' => 'scriptPHP Framework',

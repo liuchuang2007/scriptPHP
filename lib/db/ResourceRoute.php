@@ -12,26 +12,26 @@ class ResourceRoute {
 	protected function get_conn_source($type) {
 		switch($type) {
 			case 'mysql':
-				if (!empty(Application::$app->mysql)) {
-					$res = Application::$app->mysql;
+				if (!empty(App::$app->mysql)) {
+					$res = App::$app->mysql;
 				}
 			break;
 			
 			case 'memcache':
-				if (!empty(Application::$app->memcache)) {
-					$res = Application::$app->memcache;
+				if (!empty(App::$app->memcache)) {
+					$res = App::$app->memcache;
 				}
 			break;
 			
 			case 'mongodb':
-				if (!empty(Application::$app->mongodb)) {
-					$res = Application::$app->mongodb;
+				if (!empty(App::$app->mongodb)) {
+					$res = App::$app->mongodb;
 				}
 			break;
 
 			default:
-				if (!empty(Application::$app->db)) {
-					$res = Application::$app->db;
+				if (!empty(App::$app->db)) {
+					$res = App::$app->db;
 				}
 			break;
 		}

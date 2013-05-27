@@ -11,7 +11,7 @@ class UrlManager {
     **/
     public function getReQuest() {
         $url = $_SERVER['REQUEST_URI'];
-        $rules = Application::$app->urlrules;
+        $rules = App::$app->urlrules;
         foreach($rules as $key => $rule) {
             if ($this->checkUrl($rules,$key)) {
                 if (!empty($_REQUEST['_a'])) {
@@ -24,6 +24,7 @@ class UrlManager {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -58,9 +59,8 @@ class UrlManager {
      */
     public function createUrl($params) {
         if (empty($params['module']) || empty($params['action'])) return false;
-        
         //if url rewrite is open
-        if (Application::$app->urlrewrite) {
+        if (App::$app->urlrewrite) {
             $url =  '/' . $params['module'] . '/' . $params['action'] . '/';
             unset($params['module']);
             unset($params['action']);
@@ -70,11 +70,11 @@ class UrlManager {
                 $url = $url . "$value/";
             }
 
-            return trim($url,'/') . Application::$app->rewrite_suffix;
+            return rtrim($url,'/') . App::$app->rewrite_suffix;
         }
         else {
             //if url rewrite is closed
-            $url = '/index.php?';
+            $url = 'index.php?';
             foreach ($params as $key=>$value) {
                 $url = $url . "$key=$value&";
             }

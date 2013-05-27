@@ -11,52 +11,53 @@ class CController {
      *@description: render the content with layout.
      */
     protected function render($file, $data=array()) {
-        if (is_array($data)) {
-            foreach($data as $key => $value) {
-                Application::$app->tpl->assign($key,$value);
-            }
-        }
-        
-        //website name
-        Application::$app->tpl->assign('name', Application::$app->name);
-        
+        extract($data);
+
         //render css
         if (!empty($this->css)) {
-            Application::$app->tpl->assign('css',$this->css);
+            $css = $this->css;
         }
         
         //render js
         if (!empty($this->js)) {
-            Application::$app->tpl->assign('js',$this->js);
+            $js = $this->js;
         }
-
+        
         //include file.
         $folder = $this->getViewsFolder();
         $file = "$folder/$file" . '.html';
         ob_start();
-        Application::$app->tpl->output($file);
+        require $file;
         $content = ob_get_contents();
-        ob_clean();
+        ob_end_clean();
 
         //render the content in layout
-        Application::$app->tpl->assign('content',$content);
-        $layout = "layouts/$this->layout" . '.html';
-        Application::$app->tpl->output($layout);
+        require $folder."/../layouts/$this->layout" . '.html';
     }
 
     /**
      *@description: only render the content.
      */
     protected function renderPartial($file, $data=array()) {
-        if (is_array($data)) {
-            foreach($data as $key => $value) {
-                Application::$app->tpl->assign($key,$value);
-            }
-        }
+        extract($data);
 
         $folder = $this->getViewsFolder();
-        $file = "$folder/$file" . '.html';
-        Application::$app->tpl->output($file);
+        require "$folder/$file" . '.html';
+    }
+    
+    /**
+     *@description: only render the content.
+     */
+    protected function output($file, $data=array()) {
+        extract($data);
+
+        $folder = $this->getViewsFolder();
+        ob_start();
+        require "$folder/$file" . '.html';;
+        $content = ob_get_contents();
+        ob_end_clean();
+        
+        return $content;
     }
 
     /**
@@ -85,7 +86,7 @@ class CController {
      */
     private function getViewsFolder() {
         $className = get_class($this);
-        return strtolower(str_replace('Controller', '', $className));
+        return BASE_PATH . 'views/'. strtolower(str_replace('Controller', '', $className));die;
     }
 
     /**
